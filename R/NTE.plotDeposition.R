@@ -8,7 +8,7 @@
 #' g1 = NTE.plotDeposition(d)
 #' @export
 NTE.plotDeposition <- function(d, buffer=0.5) {
-  d3 = NTE.depStartEnd(d, buffer)
+  d2 = NTE.depStartEnd(d, buffer)
   deposition.start = d2$time.sec[1]/3600
   deposition.end = d2$time.sec[nrow(d2)]/3600
   Tdep.max = mean(d2$T.substrate) + sd(d2$T.substrate)
@@ -18,7 +18,7 @@ NTE.plotDeposition <- function(d, buffer=0.5) {
   rate.max = (mean(d2$deposition.rate) + sd(d2$deposition.rate))
   rate.min = (mean(d2$deposition.rate) - sd(d2$deposition.rate))
 
-  p1 = ggplot(d3, aes(time.sec/3600,pressure*1e6)) +
+  p1 = ggplot(d2, aes(time.sec/3600,pressure*1e6)) +
     geom_rect(aes(xmin=deposition.start, xmax=deposition.end, ymin=-Inf, ymax=Inf),fill='grey90',alpha=0.1, color='grey') +
     geom_rect(aes(xmin=deposition.start, xmax=deposition.end, ymin=p.max, ymax=p.min),
               fill='orange',alpha=1, color='orange') +
@@ -28,7 +28,7 @@ NTE.plotDeposition <- function(d, buffer=0.5) {
     ggtitle(paste('pressure:',signif(mean(d2$pressure),2),'Torr')) +
     theme_bw(base_size = 8)
 
-  p2 = ggplot(d3, aes(time.sec/3600,thickness)) +
+  p2 = ggplot(d2, aes(time.sec/3600,thickness)) +
     geom_rect(aes(xmin=deposition.start, xmax=deposition.end, ymin=-Inf, ymax=Inf),fill='grey90',alpha=0.1, color='grey') +
     geom_path(size=2, col='red') +
     xlab('time (h)') +
@@ -36,7 +36,7 @@ NTE.plotDeposition <- function(d, buffer=0.5) {
     ggtitle(paste('thickness:',signif(max(d2$thickness)-min(d2$thickness),2),'m.u.')) +
     theme_bw(base_size = 8)
 
-  p3 = ggplot(d3, aes(time.sec/3600,T.substrate)) +
+  p3 = ggplot(d2, aes(time.sec/3600,T.substrate)) +
     geom_rect(aes(xmin=deposition.start, xmax=deposition.end, ymin=-Inf, ymax=Inf),fill='grey90',alpha=0.1, color='grey') +
     geom_rect(aes(xmin=deposition.start, xmax=deposition.end, ymin=Tdep.max, ymax=Tdep.min),
               fill='orange',alpha=1, color='orange') +
@@ -46,7 +46,7 @@ NTE.plotDeposition <- function(d, buffer=0.5) {
     ggtitle(paste('T substrate:',signif(mean(d2$T.substrate),2),'oC')) +
     theme_bw(base_size = 8)
 
-  p4 = ggplot(d3, aes(time.sec/3600,deposition.rate)) +
+  p4 = ggplot(d2, aes(time.sec/3600,deposition.rate)) +
     geom_rect(aes(xmin=deposition.start, xmax=deposition.end, ymin=-Inf, ymax=Inf),fill='grey90',alpha=0.1, color='grey') +
     geom_rect(aes(xmin=deposition.start, xmax=deposition.end, ymin=rate.max, ymax=rate.min),
               fill='orange',alpha=1, color='orange') +
