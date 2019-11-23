@@ -18,7 +18,7 @@ Depends:
     lubridate,
     reshape2,
     pspline,
-    utils
+    utils,
+    cowplot
 Suggests: 
     testthat (>= 2.1.0),
-    cowplot
