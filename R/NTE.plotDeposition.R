@@ -56,7 +56,7 @@ NTE.plotDeposition <- function(d, buffer=0.5) {
         geom_point(size=2, col='red') +
         xlab('time (h)') +
         ylab(expression(paste('r (m.u./s)'))) +
-        ggtitle(paste('rate:',signif(mean(d2$deposition.rate),2),'m.u./s')) +
+        ggtitle(paste('rate:',signif(mean(na.omit(d2$deposition.rate)),2),'m.u./s')) +
         theme_bw(base_size = 8)
 
       p.sum = plot_grid(p1, p2, p3, p4, labels = c('A', 'B', 'C', 'D'), label_size = 12)
