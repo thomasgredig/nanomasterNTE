@@ -20,14 +20,14 @@ Sample code to store a quad graph with the results from the depostion:
 
 ``` r
 library(nanomasterNTE)
+r = data.frame()
 d = NTE.load(filename)
 d2 = NTE.depStartEnd(d)
 if (!(is.na(d2))) {
     r1 = NTE.getParams(d)
     r = rbind(r, r1)
     g3 = NTE.plotDeposition(d)
-    ggsave2(plot = g3, file = 'NTE.png',
-           width=6, height=4, dpi=300)
-  }
+    ggsave2(plot = g3, file = 'NTE.png')
+}
 ```
 
