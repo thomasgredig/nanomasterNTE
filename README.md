@@ -31,4 +31,4 @@ if (!(is.na(d2))) {
 }
 ```
 
-!(Sample Output with (A) pressure plot (B) thickness graph (C) substrate temperature graph, and (D) deposition rate)[NTE-deposition-SL20190618Si3-20190618.png]
+![Sample Output with (A) pressure plot (B) thickness graph (C) substrate temperature graph, and (D) deposition rate](NTE-deposition-SL20190618Si3-20190618.png)
